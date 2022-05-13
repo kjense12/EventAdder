@@ -1,0 +1,113 @@
+﻿@model IEnumerable<App.Domain.Event>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- First content -->
+    <div class="row" style="background-color: #085ca4">
+        <div class="col-sm">
+            <div class="p-5 justify-content-center">
+                <h5 class="text-light">
+                    Morbi eu magna consequat, vestibulum enim sit amet, aliquam 
+                    <span style="font-weight: bolder">eratneque</span>
+                    sit amet sagittis 
+                    <span style="font-weight: bolder">laDonec </span>
+                    molestie torto aliquam tortor. 
+                    Sed pulvinar, neque sit amet sagittis laDonec molestie 
+                    <span style="font-weight: bolder"> tortor </span>
+                    a bibendum elementum. 
+                    Aliquam eratneque sit amet 
+                    <span style="font-weight: bolder">sagittis </span>
+                    laDonec molestie tortor a volutpat. 
+                    Morbi eu magna consequat. 
+                </h5>
+            </div>
+        </div>
+        <div class="col" style="margin-right: -12px;">
+            <img src="~/images/pilt.jpg" class="img-fluid" align="right" alt="Website background image" />
+        </div>
+    </div>
+
+<!-- Second content -->
+
+
+    <div class="row pt-3">
+        <div class="table-responsive col-md-6">
+       
+            <table class="table" style="float: left">
+                <thead style="background-color: #085ca4">
+                    <tr>
+                        <th class="text-center text-light" colspan="5">Tulevased üritused</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: white">
+                    @foreach (var item in Model) {
+                        @if (item.EventTime >= DateTime.UtcNow)
+                        {
+                        <tr>
+                        <td>
+                            1.
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventTime)
+                        </td>
+                        <td>
+                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="ShowParticipants" asp-route-id="@item.Id">osavõtjad</a>
+                        </td>
+                        <td>
+                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Delete" asp-route-id="@item.Id">X</a>
+                        </td>
+                    </tr>
+                        }
+                    }
+                    <tr>
+                    <td colspan="5">
+                        <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Create">LISA ÜRITUS</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
+        <div class="table-responsive col-md-6">
+
+            <table class="table" style="float: left">
+                <thead style="background-color: #085ca4">
+                    <tr>
+                        <th class="text-center text-light" colspan="5">Toimunud üritused</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: white">
+                    @foreach (var item in Model) {
+                        @if (item.EventTime < DateTime.UtcNow)
+                        {
+                        <tr>
+                        <td>
+                            1.
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventTime)
+                        </td>
+                        <td>
+                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="ShowParticipants" asp-route-id="@item.Id">osavõtjad</a>
+                        </td>
+                        <td>
+                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Delete" asp-route-id="@item.Id">X</a>
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
