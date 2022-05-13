@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {}
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
         "projectName": "Base.Contract.Domain",
-        "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
-        "packagesPath": "C:\\Users\\kasutaja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
+        "packagesPath": "C:\\Users\\Karl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kasutaja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Karl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

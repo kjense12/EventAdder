@@ -20,94 +20,89 @@
     <h4>
         @Html.DisplayNameFor(model => model.@Event.EventTime) : @Html.DisplayFor(model => model.@Event.EventTime)
     </h4>
-    @if (Model.Companies != null)
-        {
             <h4>
-            Osavõtjad :
+        Osavõtjad : ;
             </h4>
-            @Html.DisplayFor(model => model.Persons);
-        }
-</div>
 
-<h3 style="color: #085ca4">Osavõtja Lisamine</h3>
-
-<input asp-for="@Model.IsClientFromCompany" type="radio" name="MyRadioField" value="true" checked />
-<input asp-for="@Model.IsClientFromCompany" type="radio" name="MyRadioField" value="false" />
-    
-    @{
-        if (Model.IsClientFromCompany)
+    @if(Model.Persons != null){
+        @foreach(var person in Model.Persons)
         {
-            <h1>
-                kdsjflkdfjslkfjdl
-            </h1>   
+            <table>
+                <tr>
+                    <td>Isikukood: </td>
+                    <td>
+                        @person.PersonalIdentificationCode
+                    </td>
+                </tr>
+                <tr>
+                    <td>Eesnimi: </td>
+                    <td>
+                        @person.FirstName
+                    </td>
+                </tr>
+                <tr>
+                    <td>Perekonnanimi: </td>
+                    <td>
+                        @person.LastName
+                    </td>
+                </tr>
+                <tr>
+                    <td>kustuta: </td>
+                    <td>
+                        vaata
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
         }
     }
+</div>
 
-@using (Html.BeginForm("CreatePerson", "Events", FormMethod.Post))
-{
-    <table>
-        <tr>
-            <td>Isikukood: </td>
-            <td>
-                @Html.TextBoxFor(m => m.SingularPerson.PersonalIdentificationCode)
-            </td>
-        </tr>
-        <tr>
-            <td>Eesnimi: </td>
-            <td>
-                @Html.TextBoxFor(m => m.SingularPerson.FirstName)
-            </td>
-        </tr>
-        <tr>
-            <td>Perekonnanimi: </td>
-            <td>
-                @Html.TextBoxFor(m => m.SingularPerson.LastName)
-            </td>
-        </tr>
-        <tr>
-            <td>LisaInformatsioon: </td>
-            <td>
-                @Html.TextBoxFor(m => m.SingularPerson.AdditionInformation)
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                @Html.HiddenFor(m => m.Event.Id)
-                <input type="submit" value="Submit"/>
-            </td>
-        </tr>
-    </table>
+@{if(Model.Event.EventTime >= DateTime.UtcNow)
+    @using (Html.BeginForm("CreatePerson", "Events", FormMethod.Post))
+    {
+        <h3 style="color: #085ca4">Osavõtja Lisamine</h3>
+
+        <input asp-for="@Model.IsClientFromCompany" type="radio" name="MyRadioField" value="true" checked />
+        <input asp-for="@Model.IsClientFromCompany" type="radio" name="MyRadioField" value="false" />
+        
+        <table>
+            <tr>
+                <td>Isikukood: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SingularPerson.PersonalIdentificationCode)
+                </td>
+            </tr>
+            <tr>
+                <td>Eesnimi: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SingularPerson.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <td>Perekonnanimi: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SingularPerson.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td>LisaInformatsioon: </td>
+                <td>
+                    @Html.TextBoxFor(m => m.SingularPerson.AdditionInformation)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.HiddenFor(m => m.Event.Id)
+                    @Html.HiddenFor(m => m.Event.EventTime)
+                    <input type="submit" value="Lisa"/>
+                </td>
+            </tr>
+        </table>
+    }
 }
 
-
-
-<!--
-<form asp-action="CreatePerson" asp-route-eventId="@Model.Event.Id" asp-route-personalId="@Model.SingularPerson.PersonalIdentificationCode"
-      asp-route-firstName="@Model.SingularPerson.FirstName" asp-route-lastName="@Model.SingularPerson.LastName"
-      asp-route-additionInformation="@Model.SingularPerson.AdditionInformation">
-
-    <div class="form-group">
-        <label asp-for="SingularPerson.PersonalIdentificationCode" class="control-label"></label>
-        <input asp-for="SingularPerson.PersonalIdentificationCode" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="SingularPerson.FirstName" class="control-label"></label>
-        <input asp-for="SingularPerson.FirstName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="SingularPerson.LastName" class="control-label"></label>
-        <input asp-for="SingularPerson.LastName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="SingularPerson.AdditionInformation" class="control-label"></label>
-        <input asp-for="SingularPerson.AdditionInformation" class="form-control" />
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-
-</form>
-
--->
 

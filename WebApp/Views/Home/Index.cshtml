@@ -42,30 +42,33 @@
                     </tr>
                 </thead>
                 <tbody style="background-color: white">
-                    @foreach (var item in Model) {
-                        @if (item.EventTime >= DateTime.UtcNow)
-                        {
+                @{ var counterUpcomingEvents = 1;}
+                @foreach (var item in Model)
+                {
+                    @if (item.EventTime >= DateTime.UtcNow)
+                    {
                         <tr>
-                        <td>
-                            1.
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventTime)
-                        </td>
-                        <td>
-                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="ShowParticipants" asp-route-id="@item.Id">osavõtjad</a>
-                        </td>
-                        <td>
-                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Delete" asp-route-id="@item.Id">X</a>
-                        </td>
-                    </tr>
-                        }
+                            <td>
+                                @counterUpcomingEvents .
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventTime)
+                            </td>
+                            <td>
+                                <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="ShowParticipants" asp-route-id="@item.Id">osavõtjad</a>
+                            </td>
+                            <td>
+                                <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Delete" asp-route-id="@item.Id">X</a>
+                            </td>
+                        </tr>
+                        counterUpcomingEvents++;
                     }
-                    <tr>
-                    <td colspan="5">
+                }
+                <tr>
+                    <td colspan="5" style="border-color: white">
                         <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Create">LISA ÜRITUS</a>
                     </td>
                 </tr>
@@ -83,28 +86,28 @@
                     </tr>
                 </thead>
                 <tbody style="background-color: white">
-                    @foreach (var item in Model) {
-                        @if (item.EventTime < DateTime.UtcNow)
-                        {
+                @{ var counterPastEvents = 1;}
+                @foreach (var item in Model)
+                {
+                    @if (item.EventTime < DateTime.UtcNow)
+                    {
                         <tr>
-                        <td>
-                            1.
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventTime)
-                        </td>
-                        <td>
-                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="ShowParticipants" asp-route-id="@item.Id">osavõtjad</a>
-                        </td>
-                        <td>
-                            <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="Delete" asp-route-id="@item.Id">X</a>
-                        </td>
-                    </tr>
-                        }
+                            <td>
+                                @counterPastEvents .
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventTime)
+                            </td>
+                            <td>
+                                <a class="text-reset text-decoration-none" asp-controller="Events" asp-action="ShowParticipants" asp-route-id="@item.Id">osavõtjad</a>
+                            </td>
+                        </tr>
+                        counterPastEvents++;
                     }
+                }
                 </tbody>
             </table>
 

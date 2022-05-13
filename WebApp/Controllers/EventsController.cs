@@ -4,6 +4,7 @@ using App.DAL.EF;
 using App.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace WebApp.Controllers
 {
@@ -24,12 +25,6 @@ namespace WebApp.Controllers
             public IEnumerable<Company> Companies { get; set; }
             
             public Person SingularPerson { get; set; }
-        }
-
-        // GET: Events
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Events.ToListAsync());
         }
 
         // GET: Events/Details/5
@@ -61,15 +56,20 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,EventName,EventLocation,EventTime,EventDescription")] Event @event)
+        public async Task<IActionResult> Create(Event @event)
         {
-            if (ModelState.IsValid)
+            var newEvent = new Event()
             {
-                _context.Add(@event);
+                EventName = @event.EventName,
+                EventLocation = @event.EventLocation,
+                EventTime = @event.EventTime,
+                EventDescription = @event.EventDescription
+            };
+            _context.Add(newEvent);
                 await _context.SaveChangesAsync();
                 return Redirect("~/");
-            }
-            return View(@event);
+                
+                return View(@event);
         }
 
         // GET: Events/Edit/5
@@ -171,32 +171,17 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-
+            
+            //Get Participants
+            var participants = await GetPersonsParticipatingInEvent(id);
+            var companies = await GetCompaniesParticipatingInEvent(id);
+            
             var model = new CollectionDataModel();
             
-            if (GetPersonsParticipatingInEvent(id) != null)
-            {
-                var persons = GetPersonsParticipatingInEvent(id).Result ?? new List<Person>();
-                model.Persons = persons;
-                foreach (var person in persons)
-                {
-                    Console.WriteLine("BLAAH");
-                    Console.WriteLine(person.FirstName);
-                }
-            }
-            
-            
-
-            if (GetPersonsParticipatingInEvent(id) != null)
-            {
-                var companies = GetCompaniesParticipatingInEvent(id).Result ?? new List<Company>();
-                model.Companies = companies;
-            }
-
+            model.Persons = participants;
+            model.Companies = companies;
             model.@Event = @event;
-
             model.IsClientFromCompany = false;
-
             model.SingularPerson = new Person();
 
             return View(model);
@@ -204,42 +189,16 @@ namespace WebApp.Controllers
 
         public async Task<IEnumerable<Person>> GetPersonsParticipatingInEvent(Guid? eventId)
         {
-            if (eventId == null)
-            {
-                return null;
-            }
-
-            var @event = await _context.Events.FirstOrDefaultAsync(m => m.Id == eventId);
-            if(@event != null)
-            {
-                if (@event.PersonsParticipatingInEvent != null)
-                {
-                    var eventPersons = @event.PersonsParticipatingInEvent.Select(row => row.Person);
-                    return eventPersons;
-                }
-            }
-            return null;
+            var persons = _context.Persons.Where(person => person.PersonsParticipatingInEvent.Any(j => j.EventId == eventId));
+            
+            return persons;
         }
         
         public async Task<IEnumerable<Company>> GetCompaniesParticipatingInEvent(Guid? eventId)
         {
-            if (eventId == null)
-            {
-                return null;
-            }
-
-            var @event = await _context.Events.FirstOrDefaultAsync(m => m.Id == eventId);
-
-            if (@event != null)
-            {
-                if (@event.CompanyParticipatingInEvent != null)
-                {
-                    var eventCompanies = @event.CompanyParticipatingInEvent.Select(row => row.Company);
-                    return eventCompanies;
-                }
-            }
-
-            return null;
+            var companies = _context.Companies.Where(company => company.CompanyParticipatingInEvent.Any(j => j.EventId == eventId));
+            
+            return companies;
         }
         
         // POST: Persons/Create
@@ -249,10 +208,11 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePerson(CollectionDataModel personDataModel)
         {
-            Console.WriteLine("asdasd");
-            Console.WriteLine(personDataModel.SingularPerson.FirstName);
-            Console.WriteLine(personDataModel.Event.Id);
-            
+            if (personDataModel.Event.EventTime < DateTime.UtcNow)
+            {
+                return Redirect($"/Events/ShowParticipants/{personDataModel.Event.Id}");
+            }
+
             var person = new Person()
             {
                 PersonalIdentificationCode = personDataModel.SingularPerson.PersonalIdentificationCode,
@@ -279,7 +239,7 @@ namespace WebApp.Controllers
 
             var @event = _context.Events.FirstOrDefault(m => m.Id == personDataModel.Event.Id);
 
-            if (@event.PersonsParticipatingInEvent == null)
+            if (@event!.PersonsParticipatingInEvent == null)
             {
                 @event.PersonsParticipatingInEvent = new List<EventPersons>();
             }
@@ -289,7 +249,7 @@ namespace WebApp.Controllers
                 _context.Persons.Add(person);
                 _context.EventsPersons.Add(eventPerson);
                 await _context.SaveChangesAsync();
-                return Redirect("~/");
+                return Redirect($"/Events/ShowParticipants/{@event.Id}");
             }
     }
 }

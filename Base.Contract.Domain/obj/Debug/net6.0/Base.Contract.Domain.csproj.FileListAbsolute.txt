@@ -22,3 +22,15 @@ C:\Users\kasutaja\GitHub\EventLogger\EventLogger-master\WebApp\Base.Contract.Dom
 C:\Users\kasutaja\GitHub\EventLogger\EventLogger-master\WebApp\Base.Contract.Domain\obj\Debug\net6.0\refint\Base.Contract.Domain.dll
 C:\Users\kasutaja\GitHub\EventLogger\EventLogger-master\WebApp\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.pdb
 C:\Users\kasutaja\GitHub\EventLogger\EventLogger-master\WebApp\Base.Contract.Domain\obj\Debug\net6.0\ref\Base.Contract.Domain.dll
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\bin\Debug\net6.0\Base.Contract.Domain.deps.json
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\bin\Debug\net6.0\Base.Contract.Domain.dll
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\bin\Debug\net6.0\Base.Contract.Domain.pdb
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.csproj.AssemblyReference.cache
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.AssemblyInfoInputs.cache
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.AssemblyInfo.cs
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.dll
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\refint\Base.Contract.Domain.dll
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\Base.Contract.Domain.pdb
+C:\Users\Karl\GitHub\EventAdder\Base.Contract.Domain\obj\Debug\net6.0\ref\Base.Contract.Domain.dll

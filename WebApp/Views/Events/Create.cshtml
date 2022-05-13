@@ -8,38 +8,43 @@
    <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
   </div>
 
-<h4>Ürituse lisamine</h4>
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EventName" class="control-label">Ürituse Nimi:</label>
-                <input asp-for="EventName" class="form-control" />
-                <span asp-validation-for="EventName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EventLocation" class="control-label">Koht:</label>
-                <input asp-for="EventLocation" class="form-control" />
-                <span asp-validation-for="EventLocation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EventTime" class="control-label">Toimumisaeg:</label>
-                <input asp-for="EventTime" class="form-control" />
-                <span asp-validation-for="EventTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EventDescription" class="control-label">Lisainfo: </label>
-                <input asp-for="EventDescription" class="form-control" />
-                <span asp-validation-for="EventDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-            <div>
-                <a asp-controller="Home" asp-action="Index">Tagasi</a>
-            </div>
-        </form>
+        <h4 class="pt-4 pb-4 " style="color: #085ca4">Ürituse lisamine</h4>
+        @using (Html.BeginForm("Create", "Events", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td class="pb-4 pe-5">Ürituse nimi: </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.EventName)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pb-4">Toimumisaeg: </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.EventTime)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pb-4">Koht: </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.EventLocation)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pb-4 pt-4">Lisainfo: </td>
+                    <td>
+                        <input asp-for="EventDescription" style="height: 50px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Lisa"/>
+                    </td>
+                </tr>
+            </table>
+        }
     </div>
 </div>
 

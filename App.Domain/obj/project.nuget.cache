@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nMRymyXdoPZCcFxCJoede0dsCxCrF79hIbJHAxGoCBguahrTlYLtvz5zOnrJEdXrORFbWucQ5d0c+rjHOwVudQ==",
+  "dgSpecHash": "m6k1/xwkrtsQmHUMlq1fUhhfKJ8yZXUy5s+lNcBjyN2gsWBZesXoYMhTKYX3y/UbIwx2iaj4TzGnxQluPwX1Bw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\App.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\App.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,33 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.DAL.EF\\App.DAL.EF.csproj": {
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.DAL.EF\\App.DAL.EF.csproj",
+        "projectUniqueName": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj",
         "projectName": "App.DAL.EF",
-        "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.DAL.EF\\App.DAL.EF.csproj",
-        "packagesPath": "C:\\Users\\kasutaja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.DAL.EF\\obj\\",
+        "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj",
+        "packagesPath": "C:\\Users\\Karl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kasutaja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Karl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\App.Domain.csproj": {
-                "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\App.Domain.csproj"
+              "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\App.Domain.csproj": {
+                "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\App.Domain.csproj"
               }
             }
           }
@@ -66,34 +68,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\App.Domain.csproj": {
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\App.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\App.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\App.Domain.csproj",
         "projectName": "App.Domain",
-        "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\App.Domain.csproj",
-        "packagesPath": "C:\\Users\\kasutaja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\App.Domain.csproj",
+        "packagesPath": "C:\\Users\\Karl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kasutaja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Karl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Domain\\Base.Domain.csproj": {
-                "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Domain\\Base.Domain.csproj"
+              "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Domain\\Base.Domain.csproj": {
+                "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Domain\\Base.Domain.csproj"
               }
             }
           }
@@ -122,26 +126,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
         "projectName": "Base.Contract.Domain",
-        "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
-        "packagesPath": "C:\\Users\\kasutaja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj",
+        "packagesPath": "C:\\Users\\Karl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kasutaja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Karl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -174,34 +180,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Domain\\Base.Domain.csproj": {
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Domain\\Base.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Domain\\Base.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Domain\\Base.Domain.csproj",
         "projectName": "Base.Domain",
-        "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Domain\\Base.Domain.csproj",
-        "packagesPath": "C:\\Users\\kasutaja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Domain\\Base.Domain.csproj",
+        "packagesPath": "C:\\Users\\Karl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kasutaja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Karl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {
-                "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\Base.Contract.Domain\\Base.Contract.Domain.csproj"
+              "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj": {
+                "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contract.Domain\\Base.Contract.Domain.csproj"
               }
             }
           }
@@ -230,34 +238,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\Karl\\GitHub\\EventAdder\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Karl\\GitHub\\EventAdder\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\WebApp\\WebApp.csproj",
-        "packagesPath": "C:\\Users\\kasutaja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\WebApp\\obj\\",
+        "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\WebApp\\WebApp.csproj",
+        "packagesPath": "C:\\Users\\Karl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kasutaja\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Karl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.DAL.EF\\App.DAL.EF.csproj": {
-                "projectPath": "C:\\Users\\kasutaja\\GitHub\\EventLogger\\EventLogger-master\\WebApp\\App.DAL.EF\\App.DAL.EF.csproj"
+              "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj": {
+                "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj"
               }
             }
           }
@@ -327,7 +337,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
