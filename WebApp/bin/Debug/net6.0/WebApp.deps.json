@@ -9,6 +9,8 @@
       "WebApp/1.0.0": {
         "dependencies": {
           "App.DAL.EF": "1.0.0",
+          "Base.Contracts.DAL": "1.0.0",
+          "BaseUOW": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.5",
           "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.EntityFrameworkCore.Design": "6.0.5",
@@ -2461,12 +2463,29 @@
           "Base.Contract.Domain.dll": {}
         }
       },
+      "Base.Contracts.DAL/1.0.0": {
+        "dependencies": {
+          "Base.Contract.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Base.Contracts.DAL.dll": {}
+        }
+      },
       "Base.Domain/1.0.0": {
         "dependencies": {
           "Base.Contract.Domain": "1.0.0"
         },
         "runtime": {
           "Base.Domain.dll": {}
+        }
+      },
+      "BaseUOW/1.0.0": {
+        "dependencies": {
+          "Base.Contracts.DAL": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.5"
+        },
+        "runtime": {
+          "BaseUOW.dll": {}
         }
       }
     }
@@ -3801,7 +3820,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Base.Contracts.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Base.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BaseUOW/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

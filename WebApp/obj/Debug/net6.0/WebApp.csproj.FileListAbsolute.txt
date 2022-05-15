@@ -1185,3 +1185,7 @@ C:\Users\Karl\GitHub\EventAdder\WebApp\obj\Debug\net6.0\refint\WebApp.dll
 C:\Users\Karl\GitHub\EventAdder\WebApp\obj\Debug\net6.0\WebApp.pdb
 C:\Users\Karl\GitHub\EventAdder\WebApp\obj\Debug\net6.0\WebApp.genruntimeconfig.cache
 C:\Users\Karl\GitHub\EventAdder\WebApp\obj\Debug\net6.0\ref\WebApp.dll
+C:\Users\Karl\GitHub\EventAdder\WebApp\bin\Debug\net6.0\Base.Contracts.DAL.dll
+C:\Users\Karl\GitHub\EventAdder\WebApp\bin\Debug\net6.0\BaseUOW.dll
+C:\Users\Karl\GitHub\EventAdder\WebApp\bin\Debug\net6.0\Base.Contracts.DAL.pdb
+C:\Users\Karl\GitHub\EventAdder\WebApp\bin\Debug\net6.0\BaseUOW.pdb

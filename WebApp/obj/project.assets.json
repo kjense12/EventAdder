@@ -3355,6 +3355,19 @@
           "bin/placeholder/Base.Contract.Domain.dll": {}
         }
       },
+      "Base.Contracts.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Base.Contract.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Base.Contracts.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base.Contracts.DAL.dll": {}
+        }
+      },
       "Base.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -3366,6 +3379,20 @@
         },
         "runtime": {
           "bin/placeholder/Base.Domain.dll": {}
+        }
+      },
+      "BaseUOW/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Base.Contracts.DAL": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.5"
+        },
+        "compile": {
+          "bin/placeholder/BaseUOW.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BaseUOW.dll": {}
         }
       }
     }
@@ -10142,15 +10169,27 @@
       "path": "../Base.Contract.Domain/Base.Contract.Domain.csproj",
       "msbuildProject": "../Base.Contract.Domain/Base.Contract.Domain.csproj"
     },
+    "Base.Contracts.DAL/1.0.0": {
+      "type": "project",
+      "path": "../Base.Contracts.DAL/Base.Contracts.DAL.csproj",
+      "msbuildProject": "../Base.Contracts.DAL/Base.Contracts.DAL.csproj"
+    },
     "Base.Domain/1.0.0": {
       "type": "project",
       "path": "../Base.Domain/Base.Domain.csproj",
       "msbuildProject": "../Base.Domain/Base.Domain.csproj"
+    },
+    "BaseUOW/1.0.0": {
+      "type": "project",
+      "path": "../BaseUOW/BaseUOW.csproj",
+      "msbuildProject": "../BaseUOW/BaseUOW.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "App.DAL.EF >= 1.0.0",
+      "Base.Contracts.DAL >= 1.0.0",
+      "BaseUOW >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.5",
       "Microsoft.EntityFrameworkCore >= 6.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.5",
@@ -10190,6 +10229,12 @@
           "projectReferences": {
             "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj": {
               "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\App.DAL.EF\\App.DAL.EF.csproj"
+            },
+            "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contracts.DAL\\Base.Contracts.DAL.csproj": {
+              "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\Base.Contracts.DAL\\Base.Contracts.DAL.csproj"
+            },
+            "C:\\Users\\Karl\\GitHub\\EventAdder\\BaseUOW\\BaseUOW.csproj": {
+              "projectPath": "C:\\Users\\Karl\\GitHub\\EventAdder\\BaseUOW\\BaseUOW.csproj"
             }
           }
         }

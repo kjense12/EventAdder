@@ -4,42 +4,49 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<!-- Banner for page -->
+@await Html.PartialAsync("_BackgroundImage")
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EventName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EventName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EventLocation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EventLocation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EventTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EventTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EventDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EventDescription)
-        </dd>
-    </dl>
+<!-- Beginning of event delete form  -->
+
+<div class="row justify-content-center"> <!-- Classes for vertical alignment of table -->
+    <div class="col-md-4"> <!-- Classes for vertical alignment of table -->
+        
+        <h3>Kas olete kindel, et soovite ürituse kustutada?</h3>
+        <div>
+            <h4>Event</h4>
+            <dl class="row">
+                <dt class = "">
+                    Ürituse nimi:
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.EventName)
+                </dd>
+                <dt class = "">
+                    Asukoht:
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.EventLocation)
+                </dd>
+                <dt class = "">
+                    Toimumis aeg:
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.EventTime)
+                </dd>
+                <dt class = "">
+                    Lisainformatsioon:
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.EventDescription)
+                </dd>
+            </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-controller="Home" asp-action="Index">Back to List</a>
-    </form>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-controller="Home" asp-action="Index">Back to List</a>
+            </form>
+        </div>
+    </div>
 </div>

@@ -12,6 +12,7 @@ public class Person : DomainEntityMetaId
         [MinLength(2)]
         public string LastName { get; set; } = default!;
         public PaymentOptions PaymentOption { get; set; }
+        [MaxLength(4096)]
         public string? AdditionInformation { get; set; }
         public ICollection<EventPersons>? PersonsParticipatingInEvent { get; set; }
 

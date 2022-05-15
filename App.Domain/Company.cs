@@ -2,6 +2,7 @@
 using Base.Domain;
 
 namespace App.Domain;
+
 public class Company : DomainEntityMetaId
     {
         [MaxLength(32)]
@@ -12,7 +13,8 @@ public class Company : DomainEntityMetaId
         public string CompanyRegisterCode { get; set; } = default!;
         public int? ParticipatingGuestsNumber { get; set; }
         public PaymentOptions PaymentOption { get; set; }
-        public string AdditionInformation { get; set; } = default!;
+        [MaxLength(4096)]
+        public string? AdditionInformation { get; set; } = default!;
 
         public ICollection<EventCompanies>? CompanyParticipatingInEvent { get; set; }
     }

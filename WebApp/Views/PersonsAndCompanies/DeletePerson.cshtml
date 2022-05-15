@@ -4,16 +4,14 @@
     ViewData["Title"] = "Delete";
 }
 
-<div>
-    <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
-</div>
+<!-- Banner -->
+@await Html.PartialAsync("_BackgroundImage")
 
 <h3>Kas oled kindel, et soovid kustutada inimese ürituse nimekirjast?</h3>
 <div>
-    <h4>Event</h4>
     <hr />
-    <div class="row justify-content-center">
-        <div class="col-md-4">
+    <div class="row justify-content-center"> <!-- Vertical alignment -->
+        <div class="col-md-4"> <!-- Vertical alignment -->
             <dl class="row">
                 <dt class = "col-sm-2">
                     Eesnimi: 
@@ -49,7 +47,7 @@
             <form asp-action="DeleteConfirmedPerson">
                 <input type="hidden" asp-for="Id" />
                 <input type="submit" value="Delete" class="btn btn-danger" /> |
-                <a asp-controller="Home" asp-action="Index">Back to List</a>
+                <a href="~/" onClick="history.go(-1); return false;">Go back</a>
             </form>
         </div>
     </div>

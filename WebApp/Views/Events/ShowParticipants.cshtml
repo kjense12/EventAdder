@@ -5,15 +5,17 @@
     ViewData["Title"] = "Index";
 }
 
-<div>
-    <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
-</div>
+<!-- Banner for page -->
+@await Html.PartialAsync("_BackgroundImage")
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
+
+<!-- Beginning of event details table -->
+
+<div class="row justify-content-center"> <!-- Classes for vertical alignment of table -->
+    <div class="col-md-8"> <!-- Classes for vertical alignment of table -->
         <table>
             <tr>
-                <h3 class="pt-4 pb-4 " style="color: #085ca4">Ürituse lisamine</h3>
+                <h3 class="pt-4 pb-4 " style="color: #085ca4">Ürituse</h3>
             </tr>
             <tr>
                 <td class="col-3">
@@ -52,6 +54,12 @@
                 </td>
             </tr>
             <td>
+                
+                <!-- 
+                Beginning of participants: Looped through Model list of persons and then companies
+                Lists can not be NULL 
+                -->
+                
                 <h5>
                     Osavõtjad :
                 </h5>
@@ -110,13 +118,14 @@
     </div>
 </div>
 
+<!-- Beginning of client creation forms -->
 
 @{
     if (Model.Event.EventTime >= DateTime.UtcNow)
         @using (Html.BeginForm("CreatePerson", "Events", FormMethod.Post))
         {
-            <div class="row justify-content-center">
-                <div class="col-md-8">
+            <div class="row justify-content-center"> <!-- Vertical alignment -->
+                <div class="col-md-5"> <!-- Vertical alignment -->
                     <h3 style="color: #085ca4">Erakliendi lisamine</h3>
 
                     <table>
@@ -194,8 +203,8 @@
 
 @using (Html.BeginForm("CreateCompany", "Events", FormMethod.Post))
         {
-            <div class="row justify-content-center">
-                <div class="col-md-8">
+            <div class="row justify-content-center"> <!-- Vertical alignment -->
+                <div class="col-md-5"> <!-- Vertical alignment -->
                     <h3 style="color: #085ca4">Ärikliendi lisamine</h3>
 
                     <table>

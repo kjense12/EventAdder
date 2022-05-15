@@ -5,13 +5,15 @@
     ViewData["Title"] = "Create";
 }
 
- <div>
-   <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
-  </div>
+<!-- Banner for page -->
+@await Html.PartialAsync("_BackgroundImage")
 
-<div class="row justify-content-center">
-    <div class="col-md-4">
-        <h4 class="pt-4 pb-4 " style="color: #085ca4">Ürituse lisamine</h4>
+<!-- Beginning of event creation form  -->
+
+<div class="row justify-content-center"> <!-- Classes for vertical alignment of table -->
+    <div class="col-md-4"> <!-- Classes for vertical alignment of table -->
+        
+        <h4 class="pt-4 pb-4 " style="color: #085ca4">Ürituse lisamine</h4> <!-- Header of Form -->
         @using (Html.BeginForm("Create", "Events", FormMethod.Post))
         {
             <table>

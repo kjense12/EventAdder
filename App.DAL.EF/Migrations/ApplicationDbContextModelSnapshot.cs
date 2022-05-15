@@ -24,7 +24,7 @@ namespace App.DAL.EF.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AdditionInformation")
-                        .IsRequired()
+                        .HasMaxLength(4096)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CompanyName")
@@ -76,17 +76,17 @@ namespace App.DAL.EF.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EventDescription")
-                        .IsRequired()
+                        .HasMaxLength(4096)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EventLocation")
                         .IsRequired()
-                        .HasMaxLength(32)
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EventName")
                         .IsRequired()
-                        .HasMaxLength(32)
+                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EventTime")
@@ -181,6 +181,7 @@ namespace App.DAL.EF.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AdditionInformation")
+                        .HasMaxLength(4096)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")

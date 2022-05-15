@@ -4,11 +4,17 @@ using Base.Contract.Domain;
 
 namespace Base.Domain;
 
+/// <summary>
+/// default Guid based Domain Entity
+/// </summary>
 public abstract class DomainEntityMetaId : DomainEntityMetaId<Guid>, IDomainEntityId
 {
     
 }
 
+/// <summary>
+/// Universal Domain Entity for adding metadata and Id to entities based on generic PK Type
+/// </summary>
 public abstract class DomainEntityMetaId<TKey> : DomainEntityId<TKey> , IDomainEntityMeta
     where TKey : IEquatable<TKey>
 {

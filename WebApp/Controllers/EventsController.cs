@@ -1,7 +1,7 @@
-﻿#nullable disable
-using System.Dynamic;
+﻿using System.Dynamic;
 using App.DAL.EF;
 using App.Domain;
+using Base.Contracts.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -11,23 +11,28 @@ namespace WebApp.Controllers
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _UOW;
 
-        public EventsController(ApplicationDbContext context)
+        public EventsController(ApplicationDbContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _UOW = unitOfWork;
         }
 
+        /// <summary>
+        /// Collection class to bind multiple models
+        /// </summary>
         public class CollectionDataModel
         {
             public bool IsClientFromCompany { get; set; }
-            public Event @Event { get; set; }
-            public IEnumerable<Person> Persons { get; set; }
-            public IEnumerable<Company> Companies { get; set; }
-            public Company SingularCompany { get; set; }
-            public Person SingularPerson { get; set; }
-        }
+            public Event @Event { get; set; } = default!;
+            public IEnumerable<Person> Persons { get; set; } = default!;
+            public IEnumerable<Company> Companies { get; set; } = default!;
+            public Company SingularCompany { get; set; } = default!;
+            public Person SingularPerson { get; set; } = default!;
+        } 
 
-        // GET: Events/Details/5
+        // GET: Events/Details/{GUID}
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -52,8 +57,6 @@ namespace WebApp.Controllers
         }
 
         // POST: Events/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Event @event)
@@ -66,11 +69,11 @@ namespace WebApp.Controllers
                 EventDescription = @event.EventDescription
             };
             _context.Add(newEvent);
-                await _context.SaveChangesAsync();
-                return Redirect("~/");
+                await _UOW.SaveChangesAsync();
+            return Redirect("~/");
         }
 
-        // GET: Events/Edit/5
+        // GET: Events/Edit/{GUID}
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -86,9 +89,7 @@ namespace WebApp.Controllers
             return View(@event);
         }
 
-        // POST: Events/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Events/Edit/{GUID}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,EventName,EventLocation,EventTime,EventDescription")] Event @event)
@@ -103,7 +104,7 @@ namespace WebApp.Controllers
                 try
                 {
                     _context.Update(@event);
-                    await _context.SaveChangesAsync();
+                    await _UOW.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -121,7 +122,7 @@ namespace WebApp.Controllers
             return View(@event);
         }
 
-        // GET: Events/Delete/5
+        // GET: Events/Delete/{GUID}
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -139,14 +140,14 @@ namespace WebApp.Controllers
             return View(@event);
         }
 
-        // POST: Events/Delete/5
+        // POST: Events/Delete/{GUID}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var @event = await _context.Events.FindAsync(id);
             _context.Events.Remove(@event);
-            await _context.SaveChangesAsync();
+            await _UOW.SaveChangesAsync();
             return Redirect("~/");
         }
 
@@ -155,7 +156,13 @@ namespace WebApp.Controllers
             return _context.Events.Any(e => e.Id == id);
         }
 
-        // GET: Events/ShowParticipants/5
+        /// <summary>
+        /// Gets event and with that information queries all companies/persons associated with the event
+        /// Binds all members into CollectionDataModel 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="isClientFromCompany"></param>
+        /// <returns></returns>
         public async Task<IActionResult> ShowParticipants(Guid? id, bool isClientFromCompany)
         {
             if (id == null)
@@ -186,6 +193,11 @@ namespace WebApp.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Inner join for persons that are attending the event
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
         public  IEnumerable<Person> GetPersonsParticipatingInEvent(Guid? eventId)
         {
             var persons = _context.Persons.Where(person => person.PersonsParticipatingInEvent.Any(j => j.EventId == eventId));
@@ -193,6 +205,11 @@ namespace WebApp.Controllers
             return persons;
         }
         
+        /// <summary>
+        /// Inner join for companis that are attending the event
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
         public IEnumerable<Company> GetCompaniesParticipatingInEvent(Guid? eventId)
         {
             var companies = _context.Companies.Where(company => company.CompanyParticipatingInEvent.Any(j => j.EventId == eventId));
@@ -200,9 +217,12 @@ namespace WebApp.Controllers
             return companies;
         }
         
-        // POST: Persons/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates and binds person to the event
+        /// Checks if event has already happened or not.
+        /// </summary>
+        /// <param name="personDataModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePerson(CollectionDataModel personDataModel)
@@ -253,12 +273,16 @@ namespace WebApp.Controllers
                 
                 _context.Persons.Add(person);
                 _context.EventsPersons.Add(eventPerson);
-                await _context.SaveChangesAsync();
+                await _UOW.SaveChangesAsync();
                 return Redirect($"/Events/ShowParticipants/{@event.Id}");
             }
-        // POST: Persons/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
+        /// <summary>
+        /// Creates and binds company to the event
+        /// Checks if event has already happened or not.
+        /// </summary>
+        /// <param name="personDataModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCompany(CollectionDataModel personDataModel)
@@ -308,7 +332,7 @@ namespace WebApp.Controllers
                 
                 _context.Companies.Add(company);
                 _context.EventsCompanies.Add(eventCompany);
-                await _context.SaveChangesAsync();
+                await _UOW.SaveChangesAsync();
                 return Redirect($"/Events/ShowParticipants/{@event.Id}");
             }
     }
