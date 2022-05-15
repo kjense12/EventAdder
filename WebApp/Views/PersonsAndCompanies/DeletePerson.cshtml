@@ -1,0 +1,56 @@
+﻿@model App.Domain.Person
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div>
+    <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
+</div>
+
+<h3>Kas oled kindel, et soovid kustutada inimese ürituse nimekirjast?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <dl class="row">
+                <dt class = "col-sm-2">
+                    Eesnimi: 
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+                <dt class = "">
+                    Perekonnanimi: 
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class = "">
+                    Isikukood: 
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.PersonalIdentificationCode)
+                </dd>
+                <dt class = "">
+                    Maksmine:
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.PaymentOption)
+                </dd>
+                <dt class = "">
+                    Lisa informatsioon:
+                </dt>
+                <dd class = "">
+                    @Html.DisplayFor(model => model.AdditionInformation)
+                </dd>
+            </dl>
+            <form asp-action="DeleteConfirmedPerson">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-controller="Home" asp-action="Index">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ namespace WebApp.Controllers
             public Event @Event { get; set; }
             public IEnumerable<Person> Persons { get; set; }
             public IEnumerable<Company> Companies { get; set; }
-            
+            public Company SingularCompany { get; set; }
             public Person SingularPerson { get; set; }
         }
 
@@ -68,8 +68,6 @@ namespace WebApp.Controllers
             _context.Add(newEvent);
                 await _context.SaveChangesAsync();
                 return Redirect("~/");
-                
-                return View(@event);
         }
 
         // GET: Events/Edit/5
@@ -158,7 +156,7 @@ namespace WebApp.Controllers
         }
 
         // GET: Events/ShowParticipants/5
-        public async Task<IActionResult> ShowParticipants(Guid? id)
+        public async Task<IActionResult> ShowParticipants(Guid? id, bool isClientFromCompany)
         {
             if (id == null)
             {
@@ -173,28 +171,29 @@ namespace WebApp.Controllers
             }
             
             //Get Participants
-            var participants = await GetPersonsParticipatingInEvent(id);
-            var companies = await GetCompaniesParticipatingInEvent(id);
+            var participants = GetPersonsParticipatingInEvent(id);
+            var companies = GetCompaniesParticipatingInEvent(id);
             
             var model = new CollectionDataModel();
             
             model.Persons = participants;
             model.Companies = companies;
             model.@Event = @event;
-            model.IsClientFromCompany = false;
+            model.IsClientFromCompany = isClientFromCompany;
             model.SingularPerson = new Person();
+            model.SingularCompany = new Company();
 
             return View(model);
         }
 
-        public async Task<IEnumerable<Person>> GetPersonsParticipatingInEvent(Guid? eventId)
+        public  IEnumerable<Person> GetPersonsParticipatingInEvent(Guid? eventId)
         {
             var persons = _context.Persons.Where(person => person.PersonsParticipatingInEvent.Any(j => j.EventId == eventId));
             
             return persons;
         }
         
-        public async Task<IEnumerable<Company>> GetCompaniesParticipatingInEvent(Guid? eventId)
+        public IEnumerable<Company> GetCompaniesParticipatingInEvent(Guid? eventId)
         {
             var companies = _context.Companies.Where(company => company.CompanyParticipatingInEvent.Any(j => j.EventId == eventId));
             
@@ -213,11 +212,17 @@ namespace WebApp.Controllers
                 return Redirect($"/Events/ShowParticipants/{personDataModel.Event.Id}");
             }
 
+            if (!Int64.TryParse(personDataModel.SingularPerson.PersonalIdentificationCode, out _))
+            {
+                return Redirect($"/Events/ShowParticipants/{personDataModel.Event.Id}");
+            }
+
             var person = new Person()
             {
                 PersonalIdentificationCode = personDataModel.SingularPerson.PersonalIdentificationCode,
                 FirstName = personDataModel.SingularPerson.FirstName,
                 LastName = personDataModel.SingularPerson.LastName,
+                PaymentOption = personDataModel.SingularPerson.PaymentOption,
                 AdditionInformation = personDataModel.SingularPerson.AdditionInformation,
                 UpdatedAt = DateTime.UtcNow,
                 CreatedAt = DateTime.UtcNow
@@ -248,6 +253,61 @@ namespace WebApp.Controllers
                 
                 _context.Persons.Add(person);
                 _context.EventsPersons.Add(eventPerson);
+                await _context.SaveChangesAsync();
+                return Redirect($"/Events/ShowParticipants/{@event.Id}");
+            }
+        // POST: Persons/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateCompany(CollectionDataModel personDataModel)
+        {
+            if (personDataModel.Event.EventTime < DateTime.UtcNow)
+            {
+                return Redirect($"/Events/ShowParticipants/{personDataModel.Event.Id}");
+            }
+
+            if (!Int64.TryParse(personDataModel.SingularCompany.CompanyRegisterCode, out _))
+            {
+                return Redirect($"/Events/ShowParticipants/{personDataModel.Event.Id}");
+            }
+
+            var company = new Company()
+            {
+                CompanyName = personDataModel.SingularCompany.CompanyName,
+                CompanyRegisterCode = personDataModel.SingularCompany.CompanyRegisterCode,
+                PaymentOption = personDataModel.SingularCompany.PaymentOption,
+                AdditionInformation = personDataModel.SingularCompany.AdditionInformation,
+                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow
+            };
+            var eventCompany = new EventCompanies()
+                {
+                    EventId = personDataModel.Event.Id,
+                    CompanyId = company.Id,
+                    UpdatedAt = DateTime.UtcNow,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+            if (company.CompanyParticipatingInEvent == null)
+            {
+                company.CompanyParticipatingInEvent = new List<EventCompanies>();
+            }
+            
+            company.CompanyParticipatingInEvent.Add(eventCompany);
+
+            var @event = _context.Events.FirstOrDefault(m => m.Id == personDataModel.Event.Id);
+
+            if (@event!.CompanyParticipatingInEvent == null)
+            {
+                @event.CompanyParticipatingInEvent = new List<EventCompanies>();
+            }
+            
+            @event.CompanyParticipatingInEvent.Add(eventCompany);
+                
+                _context.Companies.Add(company);
+                _context.EventsCompanies.Add(eventCompany);
                 await _context.SaveChangesAsync();
                 return Redirect($"/Events/ShowParticipants/{@event.Id}");
             }

@@ -1,10 +1,10 @@
-﻿using App.DAL.EF;
+﻿using System.Diagnostics;
+using App.DAL.EF;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using WebApp.Models;
 
-namespace WebApplication1.Controllers
+namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {

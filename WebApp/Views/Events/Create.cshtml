@@ -1,4 +1,5 @@
-﻿@model App.Domain.Event
+﻿@using Microsoft.CodeAnalysis.Classification
+@model App.Domain.Event
 
 @{
     ViewData["Title"] = "Create";
@@ -16,31 +17,35 @@
             <table>
                 <tr>
                     <td class="pb-4 pe-5">Ürituse nimi: </td>
-                    <td>
-                        @Html.TextBoxFor(m => m.EventName)
+                    <td class="col-lg-6">
+                        @Html.TextBoxFor(m => m.EventName, new { @class="col-12"})
+                        <span asp-validation-for="EventName" class="text-danger"></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="pb-4">Toimumisaeg: </td>
                     <td>
-                        @Html.TextBoxFor(m => m.EventTime)
+                        @Html.TextBoxFor(m => m.EventTime, new {type="datetime-local", @class="col-12"})
+                        <span asp-validation-for="EventTime" class="text-danger"></span>
                     </td>
                 </tr>
                 <tr>
                     <td class="pb-4">Koht: </td>
                     <td>
-                        @Html.TextBoxFor(m => m.EventLocation)
+                        @Html.TextBoxFor(m => m.EventLocation, new { @class="col-12"})
+                        <span asp-validation-for="EventLocation" class="text-danger"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td class="pb-4 pt-4">Lisainfo: </td>
+                    <td class="align-top">Lisainfo: </td>
                     <td>
-                        <input asp-for="EventDescription" style="height: 50px"/>
+                        @Html.TextAreaFor(m => m.EventDescription, new { @class="col-12"})
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" value="Lisa"/>
+                        <input type="submit" class="btn-primary text-right" value="Lisa"/>
+                        <a asp-controller="Home" asp-action="Index">Tagasi</a>
                     </td>
                 </tr>
             </table>

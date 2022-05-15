@@ -1,0 +1,57 @@
+﻿@model App.Domain.Person
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div>
+    <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
+</div>
+
+<h1>Edit</h1>
+
+<h4>Osavõtja info</h4>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="EditPerson">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalIdentificationCode" class="control-label"></label>
+                <input asp-for="PersonalIdentificationCode" class="form-control" />
+                <span asp-validation-for="PersonalIdentificationCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentOption" class="control-label"></label>
+                <input asp-for="PaymentOption" class="form-control" />
+                <span asp-validation-for="PaymentOption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionInformation" class="control-label"></label>
+                <input asp-for="AdditionInformation" class="form-control" />
+                <span asp-validation-for="AdditionInformation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvesta" class="btn btn-primary"/>
+            </div>
+        </form>
+        <div>
+            <a asp-controller="Home" asp-action="Index">Tagasi</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

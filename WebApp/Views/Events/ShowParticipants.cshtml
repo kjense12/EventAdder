@@ -1,108 +1,257 @@
-﻿@model WebApp.Controllers.EventsController.CollectionDataModel
+﻿@using App.Domain
+@model WebApp.Controllers.EventsController.CollectionDataModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
- <div class="">
-  <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
- </div>
-
-<h3 style="color: #085ca4">Osavõtjad</h3>
-
 <div>
-    <h4>
-        @Html.DisplayNameFor(model => model.@Event.EventName) : @Html.DisplayFor(model => model.@Event.EventName)
-    </h4>
-    <h4>
-        @Html.DisplayNameFor(model => model.@Event.EventLocation) : @Html.DisplayFor(model => model.@Event.EventLocation)
-    </h4>
-    <h4>
-        @Html.DisplayNameFor(model => model.@Event.EventTime) : @Html.DisplayFor(model => model.@Event.EventTime)
-    </h4>
-            <h4>
-        Osavõtjad : ;
-            </h4>
-
-    @if(Model.Persons != null){
-        @foreach(var person in Model.Persons)
-        {
-            <table>
-                <tr>
-                    <td>Isikukood: </td>
-                    <td>
-                        @person.PersonalIdentificationCode
-                    </td>
-                </tr>
-                <tr>
-                    <td>Eesnimi: </td>
-                    <td>
-                        @person.FirstName
-                    </td>
-                </tr>
-                <tr>
-                    <td>Perekonnanimi: </td>
-                    <td>
-                        @person.LastName
-                    </td>
-                </tr>
-                <tr>
-                    <td>kustuta: </td>
-                    <td>
-                        vaata
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-            </table>
-        }
-    }
+    <img class="img " src="~/images/libled.jpg" alt="Website background image" style="height: 125px; width: 100%; display: block;"/>
 </div>
 
-@{if(Model.Event.EventTime >= DateTime.UtcNow)
-    @using (Html.BeginForm("CreatePerson", "Events", FormMethod.Post))
-    {
-        <h3 style="color: #085ca4">Osavõtja Lisamine</h3>
-
-        <input asp-for="@Model.IsClientFromCompany" type="radio" name="MyRadioField" value="true" checked />
-        <input asp-for="@Model.IsClientFromCompany" type="radio" name="MyRadioField" value="false" />
-        
+<div class="row justify-content-center">
+    <div class="col-md-8">
         <table>
             <tr>
-                <td>Isikukood: </td>
+                <h3 class="pt-4 pb-4 " style="color: #085ca4">Ürituse lisamine</h3>
+            </tr>
+            <tr>
+                <td class="col-3">
+                    <h5>
+                        Ürituse nimi :
+                    </h5>
+                </td>
                 <td>
-                    @Html.TextBoxFor(m => m.SingularPerson.PersonalIdentificationCode)
+                    <h5 style="font-weight: lighter">
+                        @Html.DisplayFor(model => model.@Event.EventName)
+                    </h5>
                 </td>
             </tr>
             <tr>
-                <td>Eesnimi: </td>
                 <td>
-                    @Html.TextBoxFor(m => m.SingularPerson.FirstName)
+                    <h5>
+                        Asukoht :
+                    </h5>
+                </td>
+                <td>
+                    <h5 style="font-weight: lighter">
+                        @Html.DisplayFor(model => model.@Event.EventLocation)
+                    </h5>
                 </td>
             </tr>
             <tr>
-                <td>Perekonnanimi: </td>
                 <td>
-                    @Html.TextBoxFor(m => m.SingularPerson.LastName)
+                    <h5>
+                        Toimumis aeg :
+                    </h5>
+                </td>
+                <td>
+                    <h5 style="font-weight: lighter">
+                        @Html.DisplayFor(model => model.@Event.EventTime)
+                    </h5>
                 </td>
             </tr>
-            <tr>
-                <td>LisaInformatsioon: </td>
-                <td>
-                    @Html.TextBoxFor(m => m.SingularPerson.AdditionInformation)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    @Html.HiddenFor(m => m.Event.Id)
-                    @Html.HiddenFor(m => m.Event.EventTime)
-                    <input type="submit" value="Lisa"/>
-                </td>
-            </tr>
+            <td>
+                <h5>
+                    Osavõtjad :
+                </h5>
+            </td>
+            @if (Model.Persons != null)
+            {
+                @foreach (var person in Model.Persons)
+                {
+                    <tr style="font-weight: lighter">
+                        <td>
+
+                        </td>
+                        <td class="col-4">
+                            @person.GetFullName()
+                        </td>
+                        <td class="col-4">
+                            @person.PersonalIdentificationCode
+                        </td>
+                        <td class="col-2">
+                            <a class="text-reset text-decoration-none" asp-controller="PersonsAndCompanies" asp-action="EditPerson" asp-route-eventId="@Model.Event.Id" 
+                               asp-route-id="@person.Id">Vaata</a>
+                        </td>
+                        <td class="col-2">
+                            <a class="text-reset text-decoration-none" asp-controller="PersonsAndCompanies" asp-action="DeletePerson" asp-route-eventId="@Model.Event.Id"
+                               asp-route-id="@person.Id">Kustuta</a>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.Companies != null)
+            {
+                @foreach (var company in Model.Companies)
+                {
+                    <tr style="font-weight: lighter">
+                        <td>
+            
+                        </td>
+                        <td class="col-4">
+                            @company.CompanyName
+                        </td>
+                        <td class="col-4">
+                            @company.CompanyRegisterCode
+                        </td>
+                        <td class="col-2">
+                            <a class="text-reset text-decoration-none" asp-controller="PersonsAndCompanies" asp-action="EditCompany" asp-route-eventId="@Model.Event.Id" 
+                               asp-route-id="@company.Id">Vaata</a>
+                        </td>
+                        <td class="col-2">
+                            <a class="text-reset text-decoration-none" asp-controller="PersonsAndCompanies" asp-action="DeleteCompany" asp-route-eventId="@Model.Event.Id"
+                               asp-route-id="@company.Id">Kustuta</a>
+                        </td>
+                    </tr>
+                }
+            }
         </table>
-    }
+    </div>
+</div>
+
+
+@{
+    if (Model.Event.EventTime >= DateTime.UtcNow)
+        @using (Html.BeginForm("CreatePerson", "Events", FormMethod.Post))
+        {
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h3 style="color: #085ca4">Erakliendi lisamine</h3>
+
+                    <table>
+                        <tr>
+                            <td>Isikukood: </td>
+                            <td class="col">
+                                @Html.TextBoxFor(m => m.SingularPerson.PersonalIdentificationCode, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <span asp-validation-for="SingularPerson.PersonalIdentificationCode" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Eesnimi: </td>
+                            <td class="col-10">
+                                @Html.TextBoxFor(m => m.SingularPerson.FirstName, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <span asp-validation-for="SingularPerson.FirstName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Perekonnanimi: </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.SingularPerson.LastName, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Makseviis: </td>
+                            <td class="col">
+                                @Html.DropDownListFor(m => m.SingularPerson.PaymentOption, new SelectList(Enum.GetValues(typeof(PaymentOptions))),
+                                    "Vali makseviis", new {@class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <span asp-validation-for="SingularPerson.PaymentOption" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <span asp-validation-for="SingularPerson.PaymentOption" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">LisaInformatsioon: </td>
+                            <td>
+                                @Html.TextAreaFor(m => m.SingularPerson.AdditionInformation, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                @Html.HiddenFor(m => m.Event.Id)
+                                @Html.HiddenFor(m => m.Event.EventTime)
+                                <input class="tn-primary text-right" type="submit" value="Lisa"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        }
+
+@using (Html.BeginForm("CreateCompany", "Events", FormMethod.Post))
+        {
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h3 style="color: #085ca4">Ärikliendi lisamine</h3>
+
+                    <table>
+                        <tr>
+                            <td>Ettevõte nimi: </td>
+                            <td class="col">
+                                @Html.TextBoxFor(m => m.SingularCompany.CompanyName, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <span asp-validation-for="SingularCompany.CompanyName" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Registrikood: </td>
+                            <td class="col-10">
+                                @Html.TextBoxFor(m => m.SingularCompany.CompanyRegisterCode, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Makseviis: </td>
+                            <td class="col">
+                                @Html.DropDownListFor(m => m.SingularCompany.PaymentOption, new SelectList(Enum.GetValues(typeof(PaymentOptions))),
+                                    "Vali makseviis", new {@class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <span asp-validation-for="SingularCompany.PaymentOption" class="text-danger"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-top">LisaInformatsioon: </td>
+                            <td>
+                                @Html.TextAreaFor(m => m.SingularCompany.AdditionInformation, new { @class="col-12"})
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                @Html.HiddenFor(m => m.Event.Id)
+                                @Html.HiddenFor(m => m.Event.EventTime)
+                                <input class="tn-primary text-right" type="submit" value="Lisa"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        }
 }
 
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

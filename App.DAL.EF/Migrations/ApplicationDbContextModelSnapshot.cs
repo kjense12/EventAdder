@@ -29,10 +29,12 @@ namespace App.DAL.EF.Migrations
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
+                        .HasMaxLength(32)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CompanyRegisterCode")
                         .IsRequired()
+                        .HasMaxLength(18)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
@@ -42,7 +44,10 @@ namespace App.DAL.EF.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ParticipatingGuestsNumber")
+                    b.Property<int?>("ParticipatingGuestsNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PaymentOption")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -76,10 +81,12 @@ namespace App.DAL.EF.Migrations
 
                     b.Property<string>("EventLocation")
                         .IsRequired()
+                        .HasMaxLength(32)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EventName")
                         .IsRequired()
+                        .HasMaxLength(32)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EventTime")
@@ -174,7 +181,6 @@ namespace App.DAL.EF.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AdditionInformation")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
@@ -186,14 +192,21 @@ namespace App.DAL.EF.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasMaxLength(32)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasMaxLength(32)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PersonalIdentificationCode")
+                    b.Property<int>("PaymentOption")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("PersonalIdentificationCode")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
